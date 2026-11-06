@@ -70,7 +70,7 @@ REG_DEPOSITORY, REG_ADMIN = "DEPOSITORY", "ADMIN"
 # Corporate actions and reference data
 # --------------------------------------------------------------------------------------
 DIVIDEND, BONUS, RIGHTS = "DIVIDEND", "BONUS", "RIGHTS"
-SUBSCRIPTION_PRICE = 1_000      # IRR paid per new share in a rights issue (par value)
+SUBSCRIPTION_PRICE = 1_000      # currency units paid per new share in a rights issue
 EQUITY, FIXED_INCOME, RIGHT = "EQUITY", "FIXED_INCOME", "RIGHT"
 
 # return engine status codes known to this package; anything else is a finding
@@ -169,7 +169,7 @@ def isin_issues(isin) -> list[str]:
     issues = []
     if len(isin) != 12:
         issues.append("LENGTH")
-    if not isin.upper().startswith("IR"):
+    if not isin.upper().startswith("GB"):
         issues.append("PREFIX")
     if len(isin) == 12 and isin[:11].isalnum() and isin[11] != isin_check_digit(isin[:11]):
         issues.append("CHECK_DIGIT")
@@ -177,13 +177,13 @@ def isin_issues(isin) -> list[str]:
 
 
 # --------------------------------------------------------------------------------------
-# Trading calendar: the Tehran market trades Saturday to Wednesday
+# Trading calendar: standard Monday-to-Friday sessions
 # --------------------------------------------------------------------------------------
-WEEKMASK = "Sat Sun Mon Tue Wed"
+WEEKMASK = "Mon Tue Wed Thu Fri"
 
 
 def business_days(start, periods: int, holidays: Iterable = ()) -> pd.DatetimeIndex:
-    """``periods`` trading days from ``start`` (Thursday and Friday are the weekend)."""
+    """``periods`` trading days from ``start`` on a standard business calendar."""
     return pd.bdate_range(start, periods=periods, freq="C", weekmask=WEEKMASK,
                           holidays=list(holidays))
 

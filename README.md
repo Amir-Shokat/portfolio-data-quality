@@ -4,6 +4,11 @@ A runnable, synthetic demonstration of holdings reconciliation: detect defects, 
 
 This portfolio project demonstrates financial Product Owner work: defining what must agree across data routes, writing acceptance criteria, and turning exceptions into evidence engineers can reproduce. The schema, identifiers and fixtures belong to this educational implementation. They are not a production database specification, a deployed service, or proof that a real reconciliation passed.
 
+**Portfolio analytics chain.** This project validates the inputs used by the
+[Portfolio Return Engine](https://github.com/Amir-Shokat/portfolio-return-engine), whose TWR output feeds
+[Portfolio Risk Metrics](https://github.com/Amir-Shokat/portfolio-risk-metrics); operational quality is then supervised by
+[Return Monitoring](https://github.com/Amir-Shokat/return-monitoring).
+
 ## Run locally
 
 Requires Python 3.10 or later. From this folder:

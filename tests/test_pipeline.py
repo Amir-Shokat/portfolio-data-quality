@@ -6,7 +6,7 @@ from portfolio_dq import pipeline as p
 
 DAYS = m.business_days("2026-04-04", 12)
 CAL = m.Calendar(DAYS)
-SYMBOLS = pd.DataFrame([dict(symbol="SYM_A", isin=m.make_isin("IRO1SYMA000"), name="A",
+SYMBOLS = pd.DataFrame([dict(symbol="SYM_A", isin=m.make_isin("GB00SYMA000"), name="A",
                              instrument_class=m.EQUITY, parent_symbol=None)])
 PRICES = pd.DataFrame(dict(symbol="SYM_A", date=DAYS, close=1000.0))
 NO_CA = pd.DataFrame(columns=["ca_id", "symbol", "action_type", "session_date", "record_date",

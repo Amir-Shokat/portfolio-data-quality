@@ -26,15 +26,15 @@ N_DAYS = 60
 
 SYMBOLS = [
     # symbol, ISIN body (11 chars), name, class, parent, base price, daily vol, drift
-    ("ALPHA", "IRO1ALPH000", "Alpha Industries", m.EQUITY, None, 12_000, 0.018, 0.0004),
-    ("BETA", "IRO1BETA000", "Beta Petrochemical", m.EQUITY, None, 8_000, 0.020, 0.0003),
-    ("GAMMA", "IRO1GAMM000", "Gamma Cement", m.EQUITY, None, 15_000, 0.017, 0.0005),
-    ("GAMMA_R", "IRR1GAMM010", "Gamma Cement rights", m.RIGHT, "GAMMA", None, None, None),
-    ("DELTA", "IRO1DELT000", "Delta Steel", m.EQUITY, None, 5_000, 0.022, 0.0002),
-    ("EPSIL", "IRO1EPSL000", "Epsilon Foods", m.EQUITY, None, 22_000, 0.015, 0.0003),
-    ("FIXED", "IRT1FXDA000", "Fixed Income Fund A", m.FIXED_INCOME, None, 18_000, 0.0005, 0.0008),
+    ("ALPHA", "GB00ALPH000", "Alpha Industries", m.EQUITY, None, 12_000, 0.018, 0.0004),
+    ("BETA", "GB00BETA000", "Beta Manufacturing", m.EQUITY, None, 8_000, 0.020, 0.0003),
+    ("GAMMA", "GB00GAMM000", "Gamma Matecurrency units", m.EQUITY, None, 15_000, 0.017, 0.0005),
+    ("GAMMA_R", "GB00GAMR010", "Gamma Matecurrency units rights", m.RIGHT, "GAMMA", None, None, None),
+    ("DELTA", "GB00DELT000", "Delta Engineering", m.EQUITY, None, 5_000, 0.022, 0.0002),
+    ("EPSIL", "GB00EPSL000", "Epsilon Foods", m.EQUITY, None, 22_000, 0.015, 0.0003),
+    ("FIXED", "GB00FXDA000", "Fixed Income Fund A", m.FIXED_INCOME, None, 18_000, 0.0005, 0.0008),
 ]
-DELTA_OLD_BODY = "IRO3DELT000"     # DELTA moved market on day 20
+DELTA_OLD_BODY = "GB03DELT000"     # DELTA moved market on day 20
 FEES = [(m.EQUITY, 0.0088, 0.05), (m.RIGHT, 0.0088, 0.10), (m.FIXED_INCOME, 0.0004, 0.03)]
 
 # (ca_id, symbol, type, session day, record day, activation day, period end day, value, rights)
