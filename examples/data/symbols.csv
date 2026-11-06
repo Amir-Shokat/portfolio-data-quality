@@ -1,0 +1,9 @@
+symbol,isin,name,instrument_class,parent_symbol
+ALPHA,IRO1ALPH0009,Alpha Industries,EQUITY,
+BETA,IRO1BETA0000,Beta Petrochemical,EQUITY,
+GAMMA,IRO1GAMM0002,Gamma Cement,EQUITY,
+GAMMA_R,IRR1GAMM0104,Gamma Cement rights,RIGHT,GAMMA
+DELTA,IRO1DELT0005,Delta Steel,EQUITY,
+EPSIL,IRO1EPSL0002,Epsilon Foods,EQUITY,
+FIXED,IRT1FXDA0000,Fixed Income Fund A,FIXED_INCOME,
+ALPHA_V,IRO1ALPH0002,Alpha Industries,EQUITY,

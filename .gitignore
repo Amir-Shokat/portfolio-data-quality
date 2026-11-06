@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.env
+# generated outputs and downloaded data
+output/
+data/raw/
+*.log
+*.sqlite
+*.xlsx
+
+# Local tooling and generated outputs
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.monitor_cache/
+output/
+*.sqlite
+*.db
+.env
+.env.*
+!.env.example

@@ -1,0 +1,27 @@
+name,stage,target,description,expected_checks,benign
+price_missing,source,EPSIL prices,"The price feed never covered EPSIL, a held symbol.",B1,False
+price_stale,source,DELTA prices after day 54,DELTA prices stopped five trading days before the as-of date.,B2,False
+price_spike,source,ALPHA close on day 45,"One ALPHA close is 30% above the previous close, then falls back.",B3,False
+settlement_lag,feed,C014 FIXED feed rows,C014's depository rows arrive one trading day after the trades (settlement lag). Benign: must not be reported as an exception.,,True
+depository_feed_stopped,feed,C015 DELTA feed rows after day 45,The depository feed stopped updating C015/DELTA after day 45 while trades continued.,"A2X_HIST,A2X_LATEST,B6",False
+unexplained_admin_increase,feed,"C011 DELTA, day 42",A manual (ADMIN) depository registration adds 500 DELTA shares for C011 with no trade behind it; the ledger closes the gap with an UNEXPLAINED_INCREASE plug.,A1,False
+oversell_plugged,trade_feed,"C012 ALPHA, day 30",The trade feed delivered C012's full-exit sell twice. The ledger goes negative and the gap mechanism plugs it back to the depository quantity the same day.,"A0,A1",False
+intraday_negative,trade_feed,"C013 BETA, day 46","A sell carries an earlier timestamp than the buy that funded it, so C013's BETA balance is negative for an hour; the day closes correctly (masked at the daily rollup).",A0,False
+fragmented_security,stored,C016 ALPHA depository rows,ALPHA also exists as ALPHA_V (same first 11 ISIN characters); C016's depository rows are stored under ALPHA_V while its ledger uses ALPHA.,A11,False
+duplicate_daily_row,stored,"C017 BETA, day 16",One positions_daily row for C017/BETA is stored twice.,A9,False
+orphan_ca_reference,stored,"C018 ALPHA, day 38",An extra dividend row for C018 points to a corporate action id that does not exist.,A10,False
+depository_snapshot_mismatch,stored,C019 GAMMA depository_latest,C019's depository snapshot shows 10 more GAMMA shares than its own latest history row.,"A2W,A2X_LATEST",False
+unlinked_isin_change,stored,isin_lineage,"The ISIN lineage table lost the link for DELTA's market move, so received old ISINs can no longer be explained.",A8,False
+snapshot_stale_column,stored,C020 EPSIL positions_latest.realized_pnl,C020's snapshot updated the quantity after a sale but kept the old realized P&L.,A3,False
+daily_rollup_break,stored,"C021 FIXED, day 20",The daily rollup stored 50 fewer FIXED shares for C021 on day 20 than the ledger shows.,"A2X_HIST,A4",False
+ledger_balance_break,stored,"C022 DELTA, day 8 09:00",One ledger row for C022 carries a running balance 100 shares too high.,A5B,False
+avg_cost_jump,stored,"C023 BETA, day 53","A sell changed C023's average cost, which a sale cannot do.",A6,False
+missing_dividend_event,stored,"C024 ALPHA, CA01",C024 held ALPHA on the record date but never received the cash-dividend row.,A12,False
+version_drift,stored,C025 GAMMA,C025's GAMMA series switches calculation version for its last two days.,B8,False
+calc_stuck,stored,"C026 EPSIL, day 54","C026's sale on day 54 sits in the calculation queue (PENDING): no balance, no daily row, stale snapshot. The depository already shows the sale.","A2X_HIST,A2X_LATEST,B4,B6",False
+registration_type_unset,stored,C027 depository_daily.registration_type,C027's depository rows lost their registration type (informational field only). Benign for the catalogue; the rebuild reports it as Info.,,True
+leave_rejoin_not_ignored,stored,"C005 DELTA, day 22","C005's spurious leave-and-return row was not marked IGNORE. Within tolerance it looks like a one-day timing gap, so no check fires; only the rebuild catches it (scenario S07).",,False
+display_fee_constant,downstream,"app_display, FIXED rows",The app applies the equity sell fee to the fixed-income fund.,C1,False
+return_value_mismatch,downstream,C028 return_outputs,The return engine's end value for C028 is 5% above the value of its holdings.,C3,False
+unknown_status_code,downstream,C029 1M,One return row carries a status code that is not on the known list.,C4,False
+dividend_counted_as_flow,downstream,C030 dividend credit,The return engine counted C030's dividend credit as an external deposit.,C5,False

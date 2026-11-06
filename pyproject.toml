@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-data-quality"
+version = "1.0.0"
+description = "Precision monitoring for brokerage holdings data: a check catalogue that separates within-route defects from cross-route disagreements, a report-only rebuild-and-compare engine, a reconciliation test protocol and an Excel tracker."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Amirmahdi Shokatabadi"}]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23", "pandas>=1.5", "openpyxl>=3.0"]
+
+[project.optional-dependencies]
+figures = ["matplotlib>=3.5"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+portfolio-dq = "portfolio_dq.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+portfolio_dq = ["sql/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
